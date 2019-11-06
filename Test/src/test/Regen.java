@@ -6,7 +6,7 @@ public class Regen implements AttaqueStrat{
 	public int getValue() {
 		return value;
 	}
-	public void setValue(int newvalue) {
-		this.value = newvalue;
+	public void setValue(int newValue) {
+		this.value = newValue;
 	}
 }

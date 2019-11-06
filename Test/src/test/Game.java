@@ -2,108 +2,111 @@ package test;
 
 import java.util.Scanner;
 
-public class Jeu {
-	Perso joueur;
+public class Game {
+	Player player;
 	Mob mob;
-	int palier = 0;
-	int combat = 0;
+	int level = 0;
+	int fightNumber = 0;
 	int score = 0;
-	int tour = 0;
+	int turn = 0;
 	
 	
-	public Jeu(Mob mob, Perso joueur) {
-		this.joueur = joueur;
+	public Game(Mob mob, Player player) {
+		this.player = player;
 		this.mob = mob;	
 	}
+	
 	public void Amelioration() {
 		
-		
-		
 	}
-	public void Tour(Mob monstre, Perso joueur) {
-		
 	
-		while(joueur.gethp() > 0 && mob.gethp() > 0) {		
-			Scanner scann = new Scanner(System.in);
+	public void Turn(Mob monster, Player player) {
+		
+		while(player.getHp() > 0 && mob.getHp() > 0) 
+		{		
+			Scanner scanner = new Scanner(System.in);
 			System.out.println("1 att, 2 def, 3 recharge");
-			int act = scann.nextInt();
-			int mobAct = mob.rng();
+			int action = scanner.nextInt();
+			int mobAction = mob.rng();
 			AttaqueStrat regen = new Regen();
-			if (act == 1) {
+			
+			if (action == 1) {
 				System.out.println("vous attaquez");
-				if (mobAct == 1) {
+				if (mobAction == 1) {
 					System.out.println("l'ennemi att");
-					joueur.attaque(mob, regen);
+					player.attack(mob, regen);
 				}
-				if (mobAct == 2) {
+				if (mobAction == 2) {
 					System.out.println("l'ennemi def");
 				}
-				if (mobAct == 3) {
+				if (mobAction == 3) {
 					System.out.println("l'ennemi rech");
-					mob.recharge();
-					joueur.attaque(mob, regen);
-					
+					mob.reload();
+					player.attack(mob, regen);
 				}
 			}
-			if (act == 2) {
+			
+			if (action == 2) {
 				System.out.println("vous défendez");
-				if (mobAct == 1) {
+				
+				if (mobAction == 1) {
 					System.out.println("l'ennemi att");
 				}
-				if (mobAct == 2) {
+				
+				if (mobAction == 2) {
 					System.out.println("l'ennemi def");
 				}
-				if (mobAct == 3) {
-					mob.recharge();
-					
+				
+				if (mobAction == 3) {
+					mob.reload();
 					System.out.println("l'ennemi rech");
 				}
 			}
-			if (act == 3) {
+			
+			if (action == 3) {
 				System.out.println("vous rechargez");
-				joueur.recharge();
-				if (mobAct == 1) {
+				joueur.reload();
+				
+				if (mobAction == 1) {
 					System.out.println("l'ennemi att");
-					mob.attaque(joueur);
+					mob.attack(player);
 				}
-				if (mobAct == 2) {
+				
+				if (mobAction == 2) {
 					System.out.println("l'ennemi def");
 				}
-				if (mobAct == 3) {
-					mob.recharge();
-					
+				
+				if (mobAction == 3) {
+					mob.reload();
 				}
 			}
-			System.out.println("il vous reste " + joueur.gethp() + "hp");
-			System.out.println("l'ennemi à" + mob.gethp() + "hp");
-			this.tour =+ 1;
+			System.out.println("il vous reste " + player.getHp() + "hp");
+			System.out.println("l'ennemi à" + mob.getHp() + "hp");
+			this.turn =+ 1;
 		}
 			
 	}
-	public void Boucle(Perso joueur){
+	
+	public void Loop(Player player){
 		Mob mob = new Mob(30,10,0);
 		
-		this.Tour(mob, joueur);
+		this.Turn(mob, player);
 		
-		if (joueur.gethp() <= 0) {
+		if (player.getHp() <= 0) {
 			System.out.println("t'as die");
 			System.out.println(this.score);
 			}
-		if (mob.gethp() <= 0) {
+		if (mob.getHp() <= 0) {
 			System.out.println("un kill");
-			this.combat =+ 1;
+			this.fight =+ 1;
 			this.score =+ 1;
-			this.tour = 0;
+			this.turn = 0;
 			
-			if (this.combat >= 3) {
-				this.palier =+ 1;
-				this.combat = 0;
+			if (this.fight >= 3) {
+				this.level =+ 1;
+				this.fight = 0;
 				this.Amelioration();
 				}
-			
 			}
-		
 	}
-	
-	
 }

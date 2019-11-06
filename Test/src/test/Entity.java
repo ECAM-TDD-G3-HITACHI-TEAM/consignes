@@ -1,30 +1,32 @@
 package test;
 
 abstract class Entity {
+	
 	int hp;
-	int att;
-	int balles;
+	int attack;
+	int bullet;
 	
-	
-	
-	public int gethp(){
+	public int getHp(){
 		return this.hp;
 	}
-	public void sethp(int newhp) {
-		this.hp = newhp;
+	
+	public void setHp(int newHp) {
+		this.hp = newHp;
 	}
 	
-	public int getatt(){
-		return this.att;
-	}
-	public void setatt(int newatt) {
-		this.hp = newatt;
+	public int getAttack(){
+		return this.attack;
 	}
 	
-	public int getballes(){
-		return this.balles;
+	public void setAttack(int newAttack) {
+		this.hp = newAttack;
 	}
-	public void setballes(int newballes) {
-		this.hp = balles;
+	
+	public int getBullet(){
+		return this.bullet;
+	}
+	
+	public void setBullet(int newBullet) {
+		this.hp = bullet;
 	}
 }

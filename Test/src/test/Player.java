@@ -1,24 +1,23 @@
 package test;
 
-public class Perso extends Entity {
+public class Player extends Entity {
 
 		
-		public Perso(int pdv, int att, int balles) {
+		public Player(int pdv, int attack, int bullet) {
 			this.hp = pdv;
-			this.att = att;
-			this.balles = balles;
+			this.attack = attack;
+			this.bullet = bullet;
 		}
 		
-		
-		public void attaque(Entity enemy, AttaqueStrat regenos) {
+		public void attack(Entity enemy, AttaqueStrat regen) {
 			
-			this.sethp(this.gethp()+regenos.getValue());
-			enemy.sethp(enemy.gethp()-this.getatt());
-			int att = this.getatt();
-			
-			System.out.println("l'enemi à perdu" + att + "hp");
+			this.setHp(this.getHp()+regen.getValue());
+			enemy.setHp(enemy.getHp()-this.getAttack());
+			int attack = this.getAttack();
+			System.out.println("l'enemi à perdu" + attack + "hp");
 		}
-		public void recharge() {
-			this.balles =+ 1;
+		
+		public void reload() {
+			this.bullet =+ 1;
 		}
 }
